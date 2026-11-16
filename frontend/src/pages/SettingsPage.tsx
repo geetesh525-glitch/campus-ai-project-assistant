@@ -8,11 +8,15 @@ import {
   AlertTriangle,
   Save,
   BookOpen,
-  Database
+  Database,
+  Sun,
+  Moon
 } from 'lucide-react';
 import { campusApi } from '../services/api';
+import { useTheme } from '../context/ThemeContext';
 
 export const SettingsPage: React.FC = () => {
+  const { theme, toggleTheme, isDark } = useTheme();
   const [openAiKey, setOpenAiKey] = useState('');
   const [hasKey, setHasKey] = useState(false);
   const [citationStyle, setCitationStyle] = useState('APA');
@@ -95,6 +99,51 @@ export const SettingsPage: React.FC = () => {
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
+        {/* Interface Appearance & Theme Mode */}
+        <div className="academic-card p-5 space-y-3 text-xs">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E5E9EF] dark:border-[#1F2937]">
+            <div className="flex items-center space-x-2">
+              {isDark ? <Moon className="w-4 h-4 text-[#60A5FA]" /> : <Sun className="w-4 h-4 text-[#F59E0B]" />}
+              <h3 className="font-semibold text-[#202938] dark:text-white">Interface Appearance & Theme Mode</h3>
+            </div>
+            <span className="text-[11px] font-bold uppercase text-[#315B85] dark:text-[#60A5FA]">
+              Active: {theme.toUpperCase()}
+            </span>
+          </div>
+
+          <p className="text-[#687386] dark:text-[#9CA3AF]">
+            Select your preferred display theme for the Campus AI academic workspace. Dark mode reduces eye strain during night study sessions.
+          </p>
+
+          <div className="flex items-center space-x-3 pt-1">
+            <button
+              type="button"
+              onClick={() => { if (isDark) toggleTheme(); }}
+              className={`flex-1 flex items-center justify-center space-x-2 py-2.5 px-3 rounded border text-xs font-semibold transition-all ${
+                !isDark
+                  ? 'bg-white border-[#315B85] text-[#315B85] shadow-sm'
+                  : 'bg-[#F7F8FA] dark:bg-[#1F2937] border-[#E5E9EF] dark:border-[#374151] text-[#687386] dark:text-[#9CA3AF]'
+              }`}
+            >
+              <Sun className="w-4 h-4 text-[#F59E0B]" />
+              <span>Light Mode</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => { if (!isDark) toggleTheme(); }}
+              className={`flex-1 flex items-center justify-center space-x-2 py-2.5 px-3 rounded border text-xs font-semibold transition-all ${
+                isDark
+                  ? 'bg-[#1E293B] border-[#3B82F6] text-[#60A5FA] shadow-sm'
+                  : 'bg-[#F7F8FA] dark:bg-[#1F2937] border-[#E5E9EF] dark:border-[#374151] text-[#687386] dark:text-[#9CA3AF]'
+              }`}
+            >
+              <Moon className="w-4 h-4 text-[#60A5FA]" />
+              <span>Dark Mode</span>
+            </button>
+          </div>
+        </div>
+
         {/* LLM API Key Configuration */}
         <div className="academic-card p-5 space-y-4 text-xs">
           <div className="flex items-center justify-between pb-3 border-b border-[#E5E9EF]">

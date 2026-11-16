@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Sidebar } from './components/layout/Sidebar';
 import { Navbar } from './components/layout/Navbar';
+import { LoginPage } from './pages/LoginPage';
 import { LandingPage } from './pages/LandingPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { AgentWorkspacePage } from './pages/AgentWorkspacePage';
@@ -12,17 +13,51 @@ import { VivaPage } from './pages/VivaPage';
 import { StudyPlannerPage } from './pages/StudyPlannerPage';
 import { HistoryPage } from './pages/HistoryPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { useAuth } from './context/AuthContext';
 
 export function App() {
+  const { isAuthenticated } = useAuth();
+
+  // If user is not authenticated, show login interface as entry gate
+  const [showLogin, setShowLogin] = useState<boolean>(() => !isAuthenticated);
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
 
-  // If tab is 'landing', render standalone full-screen landing page
+  // 1. Initial Gate: Login Interface before landing / dashboard
+  if (showLogin && !isAuthenticated) {
+    return (
+      <LoginPage
+        onSuccess={() => {
+          setShowLogin(false);
+          setCurrentTab('dashboard');
+        }}
+        onExploreGuest={() => {
+          setShowLogin(false);
+          setCurrentTab('landing');
+        }}
+      />
+    );
+  }
+
+  // 2. Standalone Landing Page View
   if (currentTab === 'landing') {
     return (
       <LandingPage
-        onGetStarted={() => setCurrentTab('dashboard')}
-        onExploreFeature={(featureId) => setCurrentTab(featureId)}
+        onGetStarted={() => {
+          if (!isAuthenticated) {
+            setShowLogin(true);
+          } else {
+            setCurrentTab('dashboard');
+          }
+        }}
+        onExploreFeature={(featureId) => {
+          if (!isAuthenticated) {
+            setShowLogin(true);
+          } else {
+            setCurrentTab(featureId);
+          }
+        }}
+        onLoginClick={() => setShowLogin(true)}
       />
     );
   }
@@ -55,22 +90,33 @@ export function App() {
   };
 
   return (
-    <div className="flex h-screen bg-[#F7F8FA] overflow-hidden text-[#202938]">
+    <div className="flex h-screen bg-[#F7F8FA] dark:bg-[#0B0F19] overflow-hidden text-[#202938] dark:text-[#F3F4F6] transition-colors duration-200">
       {/* Fixed Left Sidebar */}
       <Sidebar
         currentTab={currentTab}
-        onSelectTab={setCurrentTab}
+        onSelectTab={(tab) => {
+          if (tab === 'login') {
+            setShowLogin(true);
+          } else {
+            setCurrentTab(tab);
+          }
+        }}
         collapsed={sidebarCollapsed}
         onToggleCollapse={() => setSidebarCollapsed(!sidebarCollapsed)}
+        onLogout={() => setShowLogin(true)}
       />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Navbar */}
-        <Navbar onSelectTab={setCurrentTab} title={getPageTitle()} />
+        <Navbar
+          onSelectTab={setCurrentTab}
+          title={getPageTitle()}
+          onLogout={() => setShowLogin(true)}
+        />
 
         {/* Scrollable Page Body */}
-        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#F7F8FA]">
+        <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#F7F8FA] dark:bg-[#0B0F19] transition-colors">
           <div className="max-w-6xl mx-auto pb-12">
             {currentTab === 'dashboard' && <DashboardPage onNavigate={setCurrentTab} />}
             {currentTab === 'pdf-analyzer' && <PDFAnalyzerPage />}
