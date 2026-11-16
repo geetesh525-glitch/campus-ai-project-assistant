@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-main: #F7F8FA;
+    --bg-sidebar: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text-primary: #202938;
+    --text-secondary: #687386;
+    --blue-primary: #315B85;
+    --blue-light: #EAF1F8;
+    --border-color: #E5E9EF;
+    --success: #32845A;
+    --warning: #C18A36;
+    --error: #C45454;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Geist", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom Academic Utilities */
+.academic-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E9EF;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+.academic-card-hover {
+  transition: all 0.15s ease-in-out;
+}
+.academic-card-hover:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 2px 4px rgba(16, 24, 40, 0.06);
+}
+
+.academic-btn-primary {
+  background-color: #315B85;
+  color: #FFFFFF;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.15s;
+}
+.academic-btn-primary:hover {
+  background-color: #27496B;
+}
+
+.academic-btn-secondary {
+  background-color: #FFFFFF;
+  color: #202938;
+  border: 1px solid #E5E9EF;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  transition: all 0.15s;
+}
+.academic-btn-secondary:hover {
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
+.academic-input {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E9EF;
+  color: #202938;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.academic-input:focus {
+  border-color: #315B85;
+  box-shadow: 0 0 0 1px #315B85;
+}
+
+/* Scrollbar customization for clean look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
