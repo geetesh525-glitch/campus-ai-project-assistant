@@ -11,13 +11,17 @@ from app.routers import (
     study_planner,
     files,
     projects,
-    settings_router
+    settings_router,
+    campus_chat,
+    project_assistant,
+    career,
+    admin
 )
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    description="Campus AI: Intelligent Academic Assistant Backend API",
-    version="1.0.0"
+    description="Campus AI: Intelligent Academic & Smart Campus Platform API",
+    version="2.0.0"
 )
 
 # Enable CORS for frontend
@@ -34,7 +38,7 @@ app.add_middleware(
 def on_startup():
     init_db()
 
-# Include Routers
+# Core Routers
 app.include_router(pdf.router, prefix=settings.API_V1_PREFIX)
 app.include_router(agents.router, prefix=settings.API_V1_PREFIX)
 app.include_router(assignments.router, prefix=settings.API_V1_PREFIX)
@@ -45,14 +49,21 @@ app.include_router(files.router, prefix=settings.API_V1_PREFIX)
 app.include_router(projects.router, prefix=settings.API_V1_PREFIX)
 app.include_router(settings_router.router, prefix=settings.API_V1_PREFIX)
 
+# New Smart Campus Routers
+app.include_router(campus_chat.router, prefix=settings.API_V1_PREFIX)
+app.include_router(project_assistant.router, prefix=settings.API_V1_PREFIX)
+app.include_router(career.router, prefix=settings.API_V1_PREFIX)
+app.include_router(admin.router, prefix=settings.API_V1_PREFIX)
+
 @app.get("/")
 def root():
     return {
         "app": "Campus AI",
+        "version": "2.0.0",
         "status": "Online",
-        "description": "Multi-agent intelligent academic assistant API"
+        "description": "Intelligent Multi-Agent Campus & Academic Platform"
     }
 
 @app.get("/api/health")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok", "version": "2.0.0"}

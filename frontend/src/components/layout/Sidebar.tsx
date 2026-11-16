@@ -1,6 +1,10 @@
 import React from 'react';
 import {
   LayoutDashboard,
+  MessageSquare,
+  Cpu,
+  Briefcase,
+  ShieldAlert,
   FileText,
   Bot,
   Search,
@@ -40,13 +44,17 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'campus-chat', label: 'Smart Campus Chat', icon: MessageSquare, badge: 'AI' },
+    { id: 'project-assistant', label: 'AI Project Studio', icon: Cpu, badge: 'Capstone' },
+    { id: 'career-assistant', label: 'Career & Placement', icon: Briefcase, badge: 'ATS' },
     { id: 'pdf-analyzer', label: 'PDF Analyzer', icon: FileText },
     { id: 'agent-workspace', label: 'AI Workspace', icon: Bot },
     { id: 'research', label: 'Research Assistant', icon: Search },
     { id: 'assignments', label: 'Assignments', icon: BookOpen },
-    { id: 'presentations', label: 'Presentation Generator', icon: Presentation },
+    { id: 'presentations', label: 'Presentations', icon: Presentation },
     { id: 'viva', label: 'Viva Preparation', icon: Award },
     { id: 'study-planner', label: 'Study Planner', icon: Calendar },
+    { id: 'admin-portal', label: 'Admin Portal', icon: ShieldAlert, badge: user?.role === 'admin' ? 'Admin' : undefined },
     { id: 'history', label: 'Project History', icon: History },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
@@ -66,18 +74,18 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <div className="h-16 flex items-center justify-between px-4 border-b border-[#E5E9EF] dark:border-[#1F2937]">
         <div
           className="flex items-center space-x-2.5 overflow-hidden cursor-pointer"
-          onClick={() => onSelectTab('landing')}
+          onClick={() => onSelectTab('dashboard')}
         >
-          <div className="w-8 h-8 rounded bg-[#315B85] dark:bg-[#2563EB] flex items-center justify-center text-white shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-[#315B85] to-[#6366F1] flex items-center justify-center text-white shrink-0 shadow-sm">
             <GraduationCap className="w-4 h-4" />
           </div>
           {!collapsed && (
             <div className="flex flex-col">
-              <span className="font-semibold text-sm tracking-tight text-[#202938] dark:text-white">
+              <span className="font-bold text-sm tracking-tight text-[#202938] dark:text-white">
                 Campus AI
               </span>
-              <span className="text-[10px] text-[#687386] dark:text-[#9CA3AF]">
-                Academic Assistant
+              <span className="text-[10px] text-[#687386] dark:text-[#9CA3AF] font-medium">
+                Academic & Career Suite
               </span>
             </div>
           )}
@@ -100,21 +108,29 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <button
               key={item.id}
               onClick={() => onSelectTab(item.id)}
-              className={`w-full flex items-center rounded-md px-2.5 py-2 text-xs font-medium transition-colors ${
+              className={`w-full flex items-center justify-between rounded-md px-2.5 py-2 text-xs font-medium transition-colors ${
                 isActive
                   ? 'bg-[#EAF1F8] dark:bg-[#1E293B] text-[#315B85] dark:text-[#60A5FA] font-semibold'
                   : 'text-[#687386] dark:text-[#9CA3AF] hover:bg-[#F7F8FA] dark:hover:bg-[#1E293B] hover:text-[#202938] dark:hover:text-white'
               }`}
               title={collapsed ? item.label : undefined}
             >
-              <Icon
-                className={`w-4 h-4 shrink-0 ${
-                  isActive
-                    ? 'text-[#315B85] dark:text-[#60A5FA]'
-                    : 'text-[#687386] dark:text-[#9CA3AF]'
-                }`}
-              />
-              {!collapsed && <span className="ml-3 truncate">{item.label}</span>}
+              <div className="flex items-center space-x-2.5 min-w-0">
+                <Icon
+                  className={`w-4 h-4 shrink-0 ${
+                    isActive
+                      ? 'text-[#315B85] dark:text-[#60A5FA]'
+                      : 'text-[#687386] dark:text-[#9CA3AF]'
+                  }`}
+                />
+                {!collapsed && <span className="truncate">{item.label}</span>}
+              </div>
+
+              {!collapsed && item.badge && (
+                <span className="text-[9px] font-bold px-1.5 py-0.2 rounded bg-[#EEF2F6] dark:bg-[#334155] text-[#315B85] dark:text-[#93C5FD]">
+                  {item.badge}
+                </span>
+              )}
             </button>
           );
         })}
@@ -156,7 +172,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
                 <div className="text-[10px] text-[#32845A] dark:text-[#10B981] flex items-center space-x-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#32845A] dark:bg-[#10B981]"></span>
-                  <span>Active Session</span>
+                  <span className="capitalize">{user?.role || 'student'} Session</span>
                 </div>
               </div>
             )}

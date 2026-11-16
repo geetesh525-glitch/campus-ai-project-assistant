@@ -208,3 +208,127 @@ class AgentCollaborationResponse(BaseModel):
     agentsStatus: List[AgentExecutionStatus]
     finalResult: Dict[str, Any]
     generatedFiles: List[Dict[str, str]]
+
+# --- NEW SCHEMAS FOR CAMPUS AI SMART PLATFORM ---
+
+# 1. Smart Campus Chatbot
+class CampusChatRequest(BaseModel):
+    message: str
+    sessionId: Optional[str] = "default-session"
+    language: Optional[str] = "en" # "en" or "hi"
+    includeKnowledgeBase: Optional[bool] = True
+
+class CampusChatResponse(BaseModel):
+    reply: str
+    language: str
+    sessionId: str
+    suggestedQuestions: List[str] = []
+    sourceCitations: List[Dict[str, Any]] = []
+
+# 2. AI Project Assistant
+class ProjectIdeaGenerateRequest(BaseModel):
+    domain: str # "AI & Machine Learning", "Full-Stack Web3", "Cloud & DevOps", "IoT & Embedded", "Cybersecurity", "HealthTech"
+    academicYear: str = "BTech Final Year"
+    complexityLevel: str = "Advanced"
+
+class ProjectIdeaItem(BaseModel):
+    id: str
+    title: str
+    tagline: str
+    problemStatement: str
+    proposedSolution: str
+    keyFeatures: List[str]
+    suggestedTechStack: Dict[str, List[str]]
+    industryRelevance: str
+    noveltyFactor: str
+
+class ProjectArchitectureRequest(BaseModel):
+    projectTitle: str
+    domain: str
+    techStack: List[str]
+
+class ProjectArchitectureResponse(BaseModel):
+    projectTitle: str
+    architecturalPattern: str # e.g. "Microservices + Event-Driven Eventual Consistency"
+    layers: List[Dict[str, Any]]
+    dataFlowSteps: List[str]
+    securityAndScaling: List[str]
+    mermaidDiagram: str
+
+class ProjectRoadmapRequest(BaseModel):
+    projectTitle: str
+    durationWeeks: int = 12
+
+class ProjectRoadmapResponse(BaseModel):
+    projectTitle: str
+    phases: List[Dict[str, Any]]
+    milestones: List[str]
+    evaluationCriteria: List[str]
+
+# 3. Career Assistant
+class ResumeReviewRequest(BaseModel):
+    resumeText: str
+    targetRole: str = "Software Development Engineer (SDE-1)"
+
+class ResumeReviewResponse(BaseModel):
+    atsScore: int # 0 to 100
+    strengths: List[str]
+    criticalImprovements: List[str]
+    missingKeywords: List[str]
+    formattingAndImpactScore: Dict[str, int]
+    recommendedActionPlan: List[str]
+
+class TechnicalInterviewRequest(BaseModel):
+    role: str = "Full Stack Engineer"
+    experienceLevel: str = "Entry Level / Campus Placement"
+    topic: str = "Data Structures & Systems Design"
+
+class CodingPracticeProblem(BaseModel):
+    id: str
+    title: str
+    difficulty: str # Easy, Medium, Hard
+    category: str # Arrays, Graphs, Dynamic Programming, System Design
+    problemStatement: str
+    examples: List[Dict[str, str]]
+    constraints: List[str]
+    starterCode: str
+    solutionExplanation: str
+
+class CodeEvaluationRequest(BaseModel):
+    problemId: str
+    code: str
+    language: str = "python"
+
+class CodeEvaluationResponse(BaseModel):
+    verdict: str # "Accepted", "Wrong Answer", "Time Limit Exceeded"
+    timeComplexity: str
+    spaceComplexity: str
+    feedback: str
+    suggestions: List[str]
+
+# 4. Admin & Campus Knowledge Base
+class AnnouncementCreate(BaseModel):
+    title: str
+    category: str
+    content: str
+    priority: str = "Normal"
+    author: Optional[str] = "Dean Academic Affairs"
+
+class AnnouncementResponse(BaseModel):
+    id: str
+    title: str
+    category: str
+    content: str
+    priority: str
+    author: str
+    publishedDate: str
+    active: bool
+
+class AdminStatsResponse(BaseModel):
+    totalStudents: int
+    documentsIndexed: int
+    agentTasksCompleted: int
+    queriesResolved: int
+    announcementsActive: int
+    storageUsedMB: float
+    systemHealth: str

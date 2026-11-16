@@ -13,6 +13,10 @@ import { VivaPage } from './pages/VivaPage';
 import { StudyPlannerPage } from './pages/StudyPlannerPage';
 import { HistoryPage } from './pages/HistoryPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { CampusChatPage } from './pages/CampusChatPage';
+import { ProjectAssistantPage } from './pages/ProjectAssistantPage';
+import { CareerAssistantPage } from './pages/CareerAssistantPage';
+import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { useAuth } from './context/AuthContext';
 
 export function App() {
@@ -66,6 +70,12 @@ export function App() {
     switch (currentTab) {
       case 'dashboard':
         return 'Student Dashboard';
+      case 'campus-chat':
+        return 'Smart Campus Chatbot (Multilingual & Voice)';
+      case 'project-assistant':
+        return 'AI Project Studio (Ideas, Architecture & Roadmaps)';
+      case 'career-assistant':
+        return 'Career & Placement Suite (ATS Resume, Interview & DSA)';
       case 'pdf-analyzer':
         return 'PDF Analyzer & Semantic Search';
       case 'agent-workspace':
@@ -80,6 +90,8 @@ export function App() {
         return 'Viva Voce Preparation';
       case 'study-planner':
         return 'Study Timetable & Deadlines';
+      case 'admin-portal':
+        return 'University Administration & Document RAG';
       case 'history':
         return 'Project History & Artifacts';
       case 'settings':
@@ -119,6 +131,9 @@ export function App() {
         <main className="flex-1 overflow-y-auto p-6 md:p-8 bg-[#F7F8FA] dark:bg-[#0B0F19] transition-colors">
           <div className="max-w-6xl mx-auto pb-12">
             {currentTab === 'dashboard' && <DashboardPage onNavigate={setCurrentTab} />}
+            {currentTab === 'campus-chat' && <CampusChatPage />}
+            {currentTab === 'project-assistant' && <ProjectAssistantPage />}
+            {currentTab === 'career-assistant' && <CareerAssistantPage />}
             {currentTab === 'pdf-analyzer' && <PDFAnalyzerPage />}
             {currentTab === 'agent-workspace' && <AgentWorkspacePage />}
             {currentTab === 'research' && <ResearchPage />}
@@ -126,6 +141,7 @@ export function App() {
             {currentTab === 'presentations' && <PresentationPage />}
             {currentTab === 'viva' && <VivaPage />}
             {currentTab === 'study-planner' && <StudyPlannerPage />}
+            {currentTab === 'admin-portal' && <AdminDashboardPage />}
             {currentTab === 'history' && <HistoryPage />}
             {currentTab === 'settings' && <SettingsPage />}
           </div>

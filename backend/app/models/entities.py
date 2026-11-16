@@ -13,7 +13,7 @@ class User(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     email = Column(String(255), unique=True, index=True, nullable=False)
     full_name = Column(String(255), nullable=False)
-    role = Column(String(50), default="student")
+    role = Column(String(50), default="student") # student, admin, faculty
     created_at = Column(DateTime, default=datetime.utcnow)
 
     projects = relationship("Project", back_populates="user", cascade="all, delete-orphan")
@@ -121,3 +121,42 @@ class UserPreferences(Base):
     web_research_enabled = Column(Boolean, default=True)
 
     user = relationship("User", back_populates="preferences")
+
+# --- NEW EXTENSIONS FOR CAMPUS AI UPGRADE ---
+
+class CampusAnnouncement(Base):
+    __tablename__ = "campus_announcements"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    title = Column(String(255), nullable=False)
+    category = Column(String(50), default="Academic") # Academic, Examination, Hostel, Event, Placement
+    content = Column(Text, nullable=False)
+    priority = Column(String(20), default="Normal") # Urgent, High, Normal
+    author = Column(String(100), default="Dean Academic Affairs")
+    published_date = Column(DateTime, default=datetime.utcnow)
+    active = Column(Boolean, default=True)
+
+class CampusKnowledgeDoc(Base):
+    __tablename__ = "campus_knowledge_docs"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    title = Column(String(255), nullable=False)
+    category = Column(String(100), default="General Regulation") # Academic Calendar, Exam Regulations, Hostel Rules, Fee Structure, Syllabus
+    file_name = Column(String(255), nullable=False)
+    file_path = Column(String(500), nullable=False)
+    page_count = Column(Integer, default=1)
+    summary = Column(Text, default="")
+    uploaded_by = Column(String(100), default="Administrator")
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+class CampusChatMessage(Base):
+    __tablename__ = "campus_chat_messages"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    user_id = Column(String(36), default="default-student")
+    session_id = Column(String(50), default="default-session")
+    role = Column(String(20), nullable=False) # user, assistant
+    content = Column(Text, nullable=False)
+    language = Column(String(10), default="en") # en, hi
+    source_citations = Column(JSON, default=list)
+    created_at = Column(DateTime, default=datetime.utcnow)

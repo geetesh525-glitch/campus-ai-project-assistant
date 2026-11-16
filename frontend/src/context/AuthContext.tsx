@@ -4,7 +4,7 @@ export interface AuthUser {
   id: string;
   name: string;
   email: string;
-  role: 'student' | 'researcher' | 'faculty';
+  role: 'student' | 'researcher' | 'faculty' | 'admin';
   institution: string;
   avatar?: string;
   authProvider: 'google' | 'email';
@@ -16,6 +16,7 @@ interface AuthContextType {
   loginWithGoogle: () => Promise<void>;
   loginWithEmail: (email: string, password: string) => Promise<void>;
   loginAsDemoStudent: () => void;
+  switchRole: (role: 'student' | 'researcher' | 'faculty' | 'admin') => void;
   logout: () => void;
 }
 
@@ -43,7 +44,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [user]);
 
   const loginWithGoogle = async () => {
-    // Simulated Google OAuth flow
     const googleUser: AuthUser = {
       id: 'google-student-01',
       name: 'Alex Morgan',
@@ -81,6 +81,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(demoUser);
   };
 
+  const switchRole = (role: 'student' | 'researcher' | 'faculty' | 'admin') => {
+    if (user) {
+      setUser({ ...user, role });
+    }
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('campus_ai_user');
@@ -94,6 +100,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         loginWithGoogle,
         loginWithEmail,
         loginAsDemoStudent,
+        switchRole,
         logout,
       }}
     >

@@ -2,7 +2,7 @@ export interface User {
   id: string;
   email: string;
   fullName: string;
-  role: 'student' | 'researcher';
+  role: 'student' | 'researcher' | 'admin' | 'faculty';
   institution?: string;
 }
 
@@ -176,3 +176,190 @@ export interface UserPreferences {
   webResearchEnabled: boolean;
   studyTimeSlots: string[];
 }
+
+// --- Smart Campus Platform Types ---
+
+export interface CampusChatMessage {
+  id: string;
+  sessionId: string;
+  sender: 'user' | 'assistant';
+  text: string;
+  suggestedQuestions?: string[];
+  sources?: string[];
+  timestamp: string;
+}
+
+export interface ProjectIdea {
+  title: string;
+  tagline?: string;
+  problemStatement: string;
+  proposedSolution: string;
+  recommendedTechStack?: string[];
+  suggestedTechStack?: Record<string, string[]>;
+  noveltyScore?: number;
+  noveltyFactor?: string;
+  estimatedWeeks?: number;
+  keyModules?: string[];
+  keyFeatures?: string[];
+}
+
+export type ProjectIdeaItem = ProjectIdea;
+
+export interface ArchitectureLayer {
+  name?: string;
+  layerName?: string;
+  description?: string;
+  components: string[];
+  technologies?: string[];
+}
+
+export interface ProjectArchitectureResponse {
+  projectTitle: string;
+  overview?: string;
+  architecturalPattern?: string;
+  layers: ArchitectureLayer[];
+  dataFlowSteps: string[];
+  securityScalability?: string[];
+  securityAndScaling?: string[];
+  mermaidDiagram: string;
+}
+
+export interface RoadmapPhase {
+  phase?: number;
+  phaseNumber?: number;
+  name?: string;
+  title?: string;
+  weeks?: string;
+  timeframe?: string;
+  tasks?: string[];
+  deliverable?: string;
+  deliverables?: string[];
+}
+
+export interface ProjectRoadmapResponse {
+  projectTitle: string;
+  durationWeeks: number;
+  phases: RoadmapPhase[];
+  milestones?: string[];
+  submissionChecklist?: string[];
+  evaluationCriteria?: string[];
+}
+
+export interface ResumeReviewResponse {
+  score?: number;
+  atsScore?: number;
+  targetRole?: string;
+  strengths: string[];
+  improvements?: string[];
+  criticalImprovements?: string[];
+  missingKeywords: string[];
+  bulletRewrites?: { original: string; improved: string; reason: string }[];
+  actionPlan?: string[];
+  recommendedActionPlan?: string[];
+  formattingAndImpactScore?: Record<string, number>;
+}
+
+export interface InterviewQuestion {
+  id: string;
+  question: string;
+  category: string;
+  difficulty?: string;
+  modelAnswer: string;
+  interviewerTips?: string[];
+  keyEvaluationPoints?: string[];
+  followUpQuestion?: string;
+}
+
+export interface InterviewPrepResponse {
+  role: string;
+  difficulty?: string;
+  topic?: string;
+  questions: InterviewQuestion[];
+}
+
+export interface CodingProblem {
+  id: string;
+  title: string;
+  difficulty: string;
+  category: string;
+  description?: string;
+  problemStatement?: string;
+  examples: { input: string; output: string; explanation?: string }[];
+  constraints: string[];
+  starterCode: string;
+  solutionExplanation?: string;
+}
+
+export type CodingPracticeProblem = CodingProblem;
+
+export interface CodeEvaluationResponse {
+  problemId?: string;
+  verdict?: string;
+  passed?: boolean;
+  timeComplexity: string;
+  spaceComplexity: string;
+  feedback: string;
+  suggestions: string[];
+  testCasesPassed?: number;
+  totalTestCases?: number;
+}
+
+export interface SemesterRoadmap {
+  semester?: number;
+  term?: string;
+  focusArea?: string;
+  focus?: string;
+  topics: string[];
+  milestone?: string;
+}
+
+export interface CareerRoadmapResponse {
+  targetRole?: string;
+  title?: string;
+  estimatedMonths?: number;
+  semesters: SemesterRoadmap[];
+  recommendedCertifications?: string[];
+}
+
+export interface CampusAnnouncement {
+  id: string;
+  title: string;
+  content: string;
+  category: string;
+  author: string;
+  targetAudience?: string;
+  priority?: string;
+  isPinned?: boolean;
+  publishedDate?: string;
+  createdAt?: string;
+  active?: boolean;
+}
+
+export type AnnouncementItem = CampusAnnouncement;
+
+export interface CampusDocument {
+  id: string;
+  title: string;
+  category: string;
+  filename: string;
+  uploadDate: string;
+  vectorCount: number;
+}
+
+export interface AdminDashboardStats {
+  totalStudents: number;
+  totalProjects?: number;
+  totalDocumentsIndexed?: number;
+  documentsIndexed?: number;
+  totalChatQueries?: number;
+  queriesResolved?: number;
+  totalPresentationsGenerated?: number;
+  totalAssignmentsGenerated?: number;
+  agentTasksCompleted?: number;
+  announcementsActive?: number;
+  storageUsedMB?: number;
+  systemHealth: string;
+  activeModel?: string;
+}
+
+export type AdminStats = AdminDashboardStats;
