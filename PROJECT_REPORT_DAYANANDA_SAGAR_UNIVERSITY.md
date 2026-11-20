@@ -16,7 +16,7 @@
 **Submitted by:**
 - **Geetesh Kumar** (USN: `ENG25CS0498`)
 - **Bhawesh Kasaudhan** (USN: `ENG25CS0448`)
-- **Bhavya Khandal** (USN: `ENG25CS0447`)
+- **Devi Kedareshwari** (USN: `ENG25CS0482`)
 
 **Under the guidance and supervision of:**  
 **Dr. Jeeva S**  
@@ -27,7 +27,7 @@ School of Engineering, Dayananda Sagar University, Bengaluru
 
 ## CERTIFICATE
 
-This is to certify that the Project work titled **"CAMPUS AI – AI PROJECT ASSISTANT"** is carried out by **Geetesh Kumar (ENG25CS0498)**, **Bhawesh Kasaudhan (ENG25CS0448)**, and **Bhavya Khandal (ENG25CS0447)**, bonafide students of the third semester of Bachelor of Technology in Computer Science and Engineering at the School of Engineering, Dayananda Sagar University, Bangalore, in partial fulfillment for the award of degree in Bachelor of Technology in Computer Science and Engineering, during the academic year 2026-2027.
+This is to certify that the Project work titled **"CAMPUS AI – AI PROJECT ASSISTANT"** is carried out by **Geetesh Kumar (ENG25CS0498)**, **Bhawesh Kasaudhan (ENG25CS0448)**, and **Devi Kedareshwari (ENG25CS0482)**, bonafide students of the third semester of Bachelor of Technology in Computer Science and Engineering at the School of Engineering, Dayananda Sagar University, Bangalore, in partial fulfillment for the award of degree in Bachelor of Technology in Computer Science and Engineering, during the academic year 2026-2027.
 
 <br/>
 
@@ -42,7 +42,7 @@ This is to certify that the Project work titled **"CAMPUS AI – AI PROJECT ASSI
 
 ## DECLARATION
 
-We, **Geetesh Kumar (ENG25CS0498)**, **Bhawesh Kasaudhan (ENG25CS0448)**, and **Bhavya Khandal (ENG25CS0447)**, students of third semester B.Tech in Computer Science and Engineering at School of Engineering, Dayananda Sagar University, hereby declare that the project titled **"CAMPUS AI – AI PROJECT ASSISTANT"** has been carried out by us and submitted in partial fulfilment for the course in Bachelor of Technology in Computer Science and Engineering during the academic year 2026-2027.
+We, **Geetesh Kumar (ENG25CS0498)**, **Bhawesh Kasaudhan (ENG25CS0448)**, and **Devi Kedareshwari (ENG25CS0482)**, students of third semester B.Tech in Computer Science and Engineering at School of Engineering, Dayananda Sagar University, hereby declare that the project titled **"CAMPUS AI – AI PROJECT ASSISTANT"** has been carried out by us and submitted in partial fulfilment for the course in Bachelor of Technology in Computer Science and Engineering during the academic year 2026-2027.
 
 We further declare that the content embodied in this report has not been submitted previously to any other university or institution for the award of any degree or diploma.
 
@@ -50,7 +50,7 @@ We further declare that the content embodied in this report has not been submitt
 | :--- | :--- | :--- |
 | **Geetesh Kumar** | `ENG25CS0498` | _________________________ |
 | **Bhawesh Kasaudhan** | `ENG25CS0448` | _________________________ |
-| **Bhavya Khandal** | `ENG25CS0447` | _________________________ |
+| **Devi Kedareshwari** | `ENG25CS0482` | _________________________ |
 
 **Place:** Bangalore  
 **Date:** November 20, 2026  

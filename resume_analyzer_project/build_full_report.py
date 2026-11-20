@@ -18,7 +18,7 @@ doc.tables[0].rows[0].cells[0].paragraphs[1].text = 'Assistant Professor'
 # Certificate (P26)
 doc.paragraphs[26].text = (
     'This is to certify that the Project work titled "AI RESUME ANALYZER & JOB MATCHER" is carried out by '
-    'Geetesh Kumar (ENG25CS0498), Bhawesh Kasaudhan (ENG25CS0448), Bhavya Khandal (ENG25CS0447), '
+    'Geetesh Kumar (ENG25CS0498), Bhawesh Kasaudhan (ENG25CS0448), Devi Kedareshwari (ENG25CS0482), '
     'bonafide students of third semester of Bachelor of Technology in Computer Science and Engineering '
     'at the School of Engineering, Dayananda Sagar University, Bangalore, in partial fulfillment for the award '
     'of degree in Bachelor of Technology in Computer Science and Engineering, during the year 2026-2027.'
@@ -26,7 +26,7 @@ doc.paragraphs[26].text = (
 
 # Declaration (P29)
 doc.paragraphs[29].text = (
-    'We, Geetesh Kumar (ENG25CS0498), Bhawesh Kasaudhan (ENG25CS0448), Bhavya Khandal (ENG25CS0447), '
+    'We, Geetesh Kumar (ENG25CS0498), Bhawesh Kasaudhan (ENG25CS0448), Devi Kedareshwari (ENG25CS0482), '
     'are students of third semester B.Tech in Computer Science and Engineering, at School of Engineering, '
     'Dayananda Sagar University, hereby declare that the Project titled "AI RESUME ANALYZER & JOB MATCHER" '
     'has been carried out by us and submitted in partial fulfilment for the course in Bachelor of Technology '

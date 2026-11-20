@@ -91,7 +91,7 @@ cp1.font.size = Pt(13)
 cp1.font.color.rgb = PRIMARY_BLUE
 
 cp2 = c_tf1.add_paragraph()
-cp2.text = "• Geetesh Kumar (ENG25CS0498)    • Bhawesh Kasaudhan (ENG25CS0448)    • Bhavya Khandal (ENG25CS0447)"
+cp2.text = "• Geetesh Kumar (ENG25CS0498)    • Bhawesh Kasaudhan (ENG25CS0448)    • Devi Kedareshwari (ENG25CS0482)"
 cp2.font.size = Pt(14)
 cp2.font.color.rgb = RGBColor(255, 255, 255)
 
