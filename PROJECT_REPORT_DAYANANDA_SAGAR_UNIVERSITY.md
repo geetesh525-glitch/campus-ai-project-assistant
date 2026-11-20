@@ -31,9 +31,9 @@ This is to certify that the Project work titled **"CAMPUS AI – AI PROJECT ASSI
 
 <br/>
 
-| **Dr. Jeeva S** | **Dr. Girisha G S** | **Dr. Udaya Kumar Reddy K R** |
+| **Prof. Pabitra Kundu** | **Dr. Girisha G S** | **Dr. Udaya Kumar Reddy K R** |
 | :--- | :--- | :--- |
-| Associate Professor | Chairman, Dept. of CSE | Dean, School of Engineering |
+| Assistant Professor | Chairman, Dept. of CSE | Dean, School of Engineering |
 | Dept. of CS & E, SOE | School of Engineering | Dayananda Sagar University |
 | Dayananda Sagar University | Dayananda Sagar University | Bangalore |
 | Date: _______________ | Date: _______________ | Date: _______________ |

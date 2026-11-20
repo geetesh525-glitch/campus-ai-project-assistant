@@ -10,6 +10,10 @@ doc = docx.Document(src_doc)
 # 1. Front Cover & Title
 doc.paragraphs[6].text = 'AI RESUME ANALYZER'
 doc.paragraphs[7].text = 'AI RESUME ANALYZER & JOB MATCHER'
+doc.paragraphs[14].text = 'Prof. Pabitra Kundu'
+doc.paragraphs[15].text = 'Assistant Professor, Dept. of CSE'
+doc.tables[0].rows[0].cells[0].paragraphs[0].text = 'Prof. Pabitra Kundu'
+doc.tables[0].rows[0].cells[0].paragraphs[1].text = 'Assistant Professor'
 
 # Certificate (P26)
 doc.paragraphs[26].text = (

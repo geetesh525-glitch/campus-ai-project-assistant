@@ -96,7 +96,7 @@ cp2.font.size = Pt(14)
 cp2.font.color.rgb = RGBColor(255, 255, 255)
 
 cp3 = c_tf1.add_paragraph()
-cp3.text = "Supervised by: Dr. Jeeva S (Associate Professor, Dept. of CSE) | Dayananda Sagar University (2026-2027)"
+cp3.text = "Supervised by: Prof. Pabitra Kundu (Assistant Professor, Dept. of CSE) | Dayananda Sagar University (2026-2027)"
 cp3.font.size = Pt(12)
 cp3.font.color.rgb = RGBColor(148, 163, 184)
 
