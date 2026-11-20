@@ -14,6 +14,7 @@ interface AuthContextType {
   user: AuthUser | null;
   isAuthenticated: boolean;
   loginWithGoogle: () => Promise<void>;
+  loginWithGoogleAccount: (account: { name: string; email: string; avatar?: string; institution?: string }) => void;
   loginWithEmail: (email: string, password: string) => Promise<void>;
   loginAsDemoStudent: () => void;
   switchRole: (role: 'student' | 'researcher' | 'faculty' | 'admin') => void;
@@ -46,11 +47,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const loginWithGoogle = async () => {
     const googleUser: AuthUser = {
       id: 'google-student-01',
-      name: 'Alex Morgan',
-      email: 'alex.morgan@university.edu',
+      name: 'Geetesh Kumar',
+      email: 'geetesh525@gmail.com',
       role: 'student',
-      institution: 'Faculty of Computer Science & Engineering',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=faces',
+      institution: 'Department of Computer Science & Engineering',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=faces',
+      authProvider: 'google',
+    };
+    setUser(googleUser);
+  };
+
+  const loginWithGoogleAccount = (account: { name: string; email: string; avatar?: string; institution?: string }) => {
+    const googleUser: AuthUser = {
+      id: `google-${Date.now()}`,
+      name: account.name,
+      email: account.email,
+      role: 'student',
+      institution: account.institution || 'Department of Computer Science & Engineering',
+      avatar: account.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop&crop=faces',
       authProvider: 'google',
     };
     setUser(googleUser);
@@ -98,6 +112,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         user,
         isAuthenticated: !!user,
         loginWithGoogle,
+        loginWithGoogleAccount,
         loginWithEmail,
         loginAsDemoStudent,
         switchRole,
