@@ -72,7 +72,48 @@ export const CampusChatPage: React.FC = () => {
       sources: ['University Academic Handbook 2025-2026', 'Examination Board Regulation §3.2'],
       timestamp: new Date().toISOString()
     };
-    setMessages([welcomeMsg]);
+    const isAcademicSample = typeof window !== 'undefined' && window.location.search.includes('view=chat');
+    const initialList: CampusChatMessage[] = [welcomeMsg];
+
+    if (isAcademicSample) {
+      initialList.push(
+        {
+          id: 'user-sample-academic',
+          sessionId,
+          sender: 'user',
+          text: 'Explain what a linked list is in simple words with examples.',
+          timestamp: new Date().toISOString()
+        },
+        {
+          id: 'assistant-sample-academic',
+          sessionId,
+          sender: 'assistant',
+          text: `A **Linked List** is a fundamental linear data structure where elements (called **Nodes**) are stored non-contiguously in memory. Each node points to the next node using a pointer/reference.
+
+### 1. Structure of a Node:
+- **Data Field**: Holds the value (e.g., Integer, String).
+- **Next Pointer**: Stores the memory address of the next node.
+
+\`\`\`
+[ Head: 10 | • ] ---> [ Data: 20 | • ] ---> [ Data: 30 | NULL ]
+\`\`\`
+
+### 2. Common Types of Linked Lists:
+- **Singly Linked List**: Traversal is unidirectional from \`Head\` to \`Tail\`.
+- **Doubly Linked List**: Contains \`next\` and \`prev\` pointers for bidirectional traversal.
+- **Circular Linked List**: The last node points back to the \`Head\` node.
+
+### 3. Time Complexity Summary:
+- **Insertion at Head**: $\\mathcal{O}(1)$ (Instantaneous)
+- **Search / Access**: $\\mathcal{O}(n)$ (Linear sequential scan)
+- **Deletion**: $\\mathcal{O}(1)$ (when pointer to predecessor is given)`,
+          sources: ['Data Structures and Algorithm Analysis in C++ (4th Ed.)', 'CS201 Syllabus Unit 2'],
+          timestamp: new Date().toISOString()
+        }
+      );
+    }
+
+    setMessages(initialList);
   }, [language, sessionId]);
 
   useEffect(() => {

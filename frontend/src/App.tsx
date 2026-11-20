@@ -22,9 +22,14 @@ import { useAuth } from './context/AuthContext';
 export function App() {
   const { isAuthenticated } = useAuth();
 
+  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  const viewParam = params?.get('view');
+  const initialTab = viewParam === 'chat' ? 'campus-chat' : viewParam === 'project' ? 'project-assistant' : 'dashboard';
+  const bypassLogin = params?.has('view') || isAuthenticated;
+
   // If user is not authenticated, show login interface as entry gate
-  const [showLogin, setShowLogin] = useState<boolean>(() => !isAuthenticated);
-  const [currentTab, setCurrentTab] = useState<string>('dashboard');
+  const [showLogin, setShowLogin] = useState<boolean>(() => !bypassLogin);
+  const [currentTab, setCurrentTab] = useState<string>(initialTab);
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
 
   // 1. Initial Gate: Login Interface before landing / dashboard

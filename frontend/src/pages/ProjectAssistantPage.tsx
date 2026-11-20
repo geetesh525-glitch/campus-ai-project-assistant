@@ -44,6 +44,32 @@ export const ProjectAssistantPage: React.FC = () => {
 
   const [copiedCode, setCopiedCode] = useState<boolean>(false);
 
+  // Initialize sample project idea if view=project
+  React.useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('view=project')) {
+      setIdeasList([
+        {
+          title: 'Campus AI – Intelligent Academic & Multi-Agent Project Assistant',
+          tagline: 'Centralized AI-driven academic assistant with RAG document retrieval & CrewAI autonomous workflows',
+          noveltyFactor: 'High Impact • 9.2/10',
+          problemStatement: 'Students struggle with fragmented academic tools, inefficient syllabus research, and lack of guided project planning across semesters.',
+          proposedSolution: 'A unified single-platform assistant providing bilingual smart chat, PyMuPDF RAG analysis, automated milestone scheduling, and DOCX/PPTX report building.',
+          suggestedTechStack: {
+            Frontend: ['React 18', 'TypeScript', 'Tailwind CSS', 'Vite'],
+            Backend: ['Python', 'FastAPI', 'Uvicorn', 'SQLite'],
+            AI: ['Google Gemini API', 'CrewAI', 'PyMuPDF RAG']
+          },
+          keyFeatures: [
+            '5-Agent CrewAI Workspace for automated task decomposition',
+            'Retrieval-Augmented Generation (RAG) over PDF lecture notes',
+            'Voice Assistant with real-time Speech-to-Text and Text-to-Speech',
+            'Career ATS resume scanner and interactive DSA sandbox'
+          ]
+        }
+      ]);
+    }
+  }, []);
+
   // Handlers
   const handleGenerateIdeas = async () => {
     setIdeasLoading(true);
